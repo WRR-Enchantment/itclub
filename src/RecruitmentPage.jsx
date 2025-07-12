@@ -1,7 +1,7 @@
 // RecruitmentPage.jsx
 {/* Background Layer */}
 <div
-  className="fixed top-0 left-0 w-full h-full -z-10 bg-top bg-no-repeat bg-cover scale-105 sm:scale-100"
+  className="fixed top-0 left-0 w-full min-h-[200vh] -z-10 bg-top bg-no-repeat bg-cover scale-105"
   style={{ backgroundImage: "url('/bg.jpg')" }}
 />
 
