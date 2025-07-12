@@ -4,6 +4,11 @@
   className="fixed top-0 left-0 w-full min-h-[200vh] -z-10 bg-top bg-no-repeat bg-cover scale-105"
   style={{ backgroundImage: "url('/bg.jpg')" }}
 />
+    {/* Background Tetap */}
+    <div
+      className="fixed top-0 left-0 w-full min-h-[250vh] bg-cover bg-top scale-105 -z-10"
+      style={{ backgroundImage: "url('/bg.jpg')" }}
+    />
 
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect, useMemo } from "react";
