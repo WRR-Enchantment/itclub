@@ -91,68 +91,136 @@ const faqs = [
 const allGamePaths = [
   [
     {
-      question: "Kamu baru masuk tim produksi, suasananya ramai banget. Kamu...",
+      question: "Kamu baru masuk IT CLUB, alasan kamu gabung karena...",
       options: [
-        { text: "Coba ikut ngobrol pelan-pelan", points: 2, next: 1 },
-        { text: "Diam aja dulu sambil ngamatin", points: 1, next: 1 },
+        { text: "Karena ada kak Dwiki yang keren banget pas presentasi.", points: 2, next: 1 },
+        { text: "Karena penasaran sama yang namanya 'tim produksi'.", points: 1, next: 1 },
       ],
     },
     {
-      question: "Ada rapat perdana, kamu dapat tugas dokumentasi. Kamu...",
+      question: "Kamu datang ke pertemuan pertama, tapi belum kenal siapa-siapa. Kamu...",
       options: [
-        { text: "Langsung cari tahu tugasnya", points: 2, next: 2 },
-        { text: "Tanya teman dulu, takut salah", points: 1, next: 2 },
+        { text: "Coba duduk dekat orang dan menyapa duluan", points: 2, next: 2 },
+        { text: "Main HP sambil menunggu instruksi", points: 0, next: 2 },
       ],
     },
     {
-      question: "Kamu diminta ambil gambar pas upacara. Tapi cuaca mendung banget!",
+      question: "Kamu ditugaskan jadi fotografer pas upacara bendera. Tapi cuaca mendung.",
       options: [
-        { text: "Tetap ambil gambar sebaik mungkin", points: 2, next: 3 },
-        { text: "Minta pindah tugas aja", points: 0, next: 3 },
+        { text: "Tetap ambil gambar semaksimal mungkin", points: 2, next: 3 },
+        { text: "Bilang ke senior kalau gak yakin", points: 1, next: 3 },
       ],
     },
     {
-      question: "File kamu error dan hilang. Deadline malam ini!",
+      question: "Ada deadline edit foto malam ini, tapi kamu ngantuk berat.",
       options: [
-        { text: "Ulang dari awal, semampunya", points: 2, next: "result" },
-        { text: "Lapor ke kakak pembina, minta solusi", points: 1, next: "result" },
+        { text: "Kerjakan semampunya dan lapor kalau belum selesai", points: 1, next: 4 },
+        { text: "Paksa begadang sampai tuntas", points: 2, next: 4 },
+      ],
+    },
+    {
+      question: "Hasil editing kamu dikritik, katanya terlalu gelap.",
+      options: [
+        { text: "Minta masukan detail dan revisi", points: 2, next: 5 },
+        { text: "Jawab seadanya, lalu diam", points: 0, next: 5 },
+      ],
+    },
+    {
+      question: "Saat mau upload, internet di rumah error.",
+      options: [
+        { text: "Cari WiFi tetangga atau sekolah", points: 2, next: 6 },
+        { text: "Menyerah dan kirim besok aja", points: 0, next: 6 },
+      ],
+    },
+    {
+      question: "Tugas berikutnya: dokumentasi acara OSIS yang rame banget!",
+      options: [
+        { text: "Ambil gambar dari berbagai sudut", points: 2, next: 7 },
+        { text: "Cuma ambil dari jauh biar aman", points: 1, next: 7 },
+      ],
+    },
+    {
+      question: "Laptop kamu hang saat render video akhir.",
+      options: [
+        { text: "Restart dan mulai render ulang dengan sabar", points: 2, next: "result" },
+        { text: "Minta tolong teman backup file", points: 1, next: "result" },
       ],
     },
   ],
   [
     {
-      question: "Kamu ditawari ikut jadi tim podcast. Kamu belum pernah nyoba, tapi...",
+      question: "Kamu ditawari jadi host podcast walau belum pernah coba.",
       options: [
-        { text: "Oke, aku coba dulu", points: 2, next: 1 },
-        { text: "Takut suara jelek, tolak halus", points: 0, next: 1 },
+        { text: "Oke, tantangan baru!", points: 2, next: 1 },
+        { text: "Nolak halus, minta jadi teknisi saja", points: 0, next: 1 },
       ],
     },
     {
-      question: "Kamu grogi pas rekaman. Suara kamu kedengeran gemetar.",
+      question: "Pas rekaman, kamu grogi dan ngomongnya belepotan.",
       options: [
-        { text: "Coba ulang sambil tarik napas", points: 2, next: 2 },
-        { text: "Tetap rekam walau deg-degan", points: 1, next: 2 },
+        { text: "Ulang rekaman sampai lebih tenang", points: 2, next: 2 },
+        { text: "Lanjut aja, biar belajar dari kesalahan", points: 1, next: 2 },
       ],
     },
     {
-      question: "Podcast tayang! Teman-teman suka. Tapi ada yang ngomentarin logatmu.",
+      question: "Rekamanmu di-posting dan banyak view! Tapi ada kritik logat daerahmu.",
       options: [
-        { text: "Bilang makasih dan belajar logat lagi", points: 2, next: "result" },
-        { text: "Bodo amat, yang penting pede", points: 1, next: "result" },
+        { text: "Terima dan belajar lebih baik lagi", points: 2, next: "result" },
+        { text: "Abaikan, yang penting pede", points: 1, next: "result" },
+      ],
+    },
+  ],
+  [
+    {
+      question: "Kamu ditunjuk sebagai editor video utama untuk promosi ekskul.",
+      options: [
+        { text: "Siap, mulai brainstorming ide dulu", points: 2, next: 1 },
+        { text: "Minta referensi dan contoh video lama", points: 1, next: 1 },
+      ],
+    },
+    {
+      question: "Footage yang kamu terima buram dan shaky.",
+      options: [
+        { text: "Pakai footage yang ada sambil kreatif menyelamatkan", points: 2, next: 2 },
+        { text: "Komplain dan minta ulang semua", points: 0, next: 2 },
+      ],
+    },
+    {
+      question: "Kamu diundang ikut kompetisi video pendek.",
+      options: [
+        { text: "Langsung ikut dan buat script bareng tim", points: 2, next: 3 },
+        { text: "Minta waktu berpikir dulu", points: 1, next: 3 },
+      ],
+    },
+    {
+      question: "Waktu tinggal 1 hari, kamu belum tidur demi edit video final.",
+      options: [
+        { text: "Lanjut terus! Ini momen penting", points: 2, next: 4 },
+        { text: "Istirahat sebentar lalu lanjut kerja", points: 1, next: 4 },
+      ],
+    },
+    {
+      question: "Saat upload, file corrupt!",
+      options: [
+        { text: "Cari backup & render ulang cepat", points: 2, next: "result" },
+        { text: "Putus asa dan kirim saja seadanya", points: 0, next: "result" },
       ],
     },
   ],
 ];
 
 function getResult(score) {
-  if (score >= 7) {
-    return "🎉 Keren! Kamu cocok jadi anggota inti tim produksi. Semangatmu luar biasa!";
-  } else if (score >= 4) {
-    return "👍 Kamu punya potensi! Tinggal diasah sedikit lagi. Terus belajar ya.";
+  if (score >= 6) {
+    return "🔥 Kamu luar biasa! Tantangan malah bikin kamu bersinar. Tim butuh orang seperti kamu!";
+  } else if (score >= 3) {
+    return "💪 Kamu cukup solid! Kadang ragu, tapi kamu tetap melangkah. Terus berkembang, ya!";
+  } else if (score >= 0) {
+    return "🤔 Perlu latihan lagi. Tapi kamu punya niat, tinggal dibimbing aja.";
   } else {
-    return "✨ Awal yang oke! Masih perlu adaptasi, tapi kamu sudah melangkah.";
+    return "⚠️ Hmm... sepertinya kamu belum siap bergabung. Yuk, coba lagi dan lebih berani ambil keputusan!";
   }
 }
+
 
 function ScrollReveal({ children, delay = 0 }) {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -177,6 +245,14 @@ export default function RecruitmentPage() {
   const [totalScore, setTotalScore] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [visitorCount, setVisitorCount] = useState(0);
+
+useEffect(() => {
+  fetch("https://api.countapi.xyz/hit/taatitclub/visits")
+    .then((res) => res.json())
+    .then((data) => setVisitorCount(data.value));
+}, []);
+
 const [vh, setVh] = useState(window.innerHeight);
 
 useEffect(() => {
@@ -293,16 +369,21 @@ useEffect(() => {
         </AnimatePresence>
       </div>
 
-      {/* MARQUEE TEKS DI ATAS TENGAH */}
-      <div className="fixed top-2 left-1/2 transform -translate-x-1/2 z-40 w-[90%] max-w-xl overflow-hidden whitespace-nowrap rounded-md bg-white/90 text-black font-semibold text-sm select-none shadow-md px-4 py-1">
-        <motion.div
-          animate={{ x: ["100%", "-100%"] }}
-          transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-          className="inline-block"
-        >
-          💡 Satu klub, banyak karya. Gabung TAAT IT CLUB dan ekspresikan kreativitasmu bareng teman-teman seru!
-        </motion.div>
-      </div>
+      {/* MARQUEE TEKS DI ATAS TENGAH TANPA JEDA */}
+<div className="fixed top-2 left-1/2 transform -translate-x-1/2 z-40 w-[90%] max-w-xl overflow-hidden whitespace-nowrap rounded-md bg-white/100 text-black font-semibold text-sm select-none shadow-md px-4 py-1">
+  <motion.div
+    className="flex gap-12 animate-marquee"
+    animate={{ x: ["0%", "-100%"] }}
+    transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+  >
+    <span>
+      Belajar di temenin aa Dwiki yang baik hati dan tidak sombon minus slow respon saja :) 
+    </span>
+    <span>
+      💡 Satu klub, banyak karya. Gabung TAAT IT CLUB dan ekspresikan kreativitasmu bareng teman-teman seru!
+    </span>
+  </motion.div>
+</div>
 
       {/* Logo & Judul */}
       <ScrollReveal>
@@ -488,6 +569,11 @@ useEffect(() => {
         >
           {showFAQ ? <FaTimes /> : <FaQuestionCircle />}
         </button>
+        {/* Visitor Counter - pojok kanan bawah */}
+<div className="fixed bottom-5 left-5 z-50 bg-white/20 backdrop-blur-xl px-3 py-1 rounded-full text-xs text-white border border-white/30 shadow">
+  👁️ {visitorCount} pengunjung
+</div>
+
         <AnimatePresence>
           {showFAQ && (
             <motion.div
