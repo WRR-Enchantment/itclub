@@ -1,7 +1,7 @@
 // RecruitmentPage.jsx
 {/* Background Layer */}
 <div
-  className="fixed top-0 left-0 w-full min-h-[4000px] bg-cover bg-center bg-no-repeat -z-10"
+  className="fixed top-0 left-0 w-full min-h-[8000px] bg-cover bg-center bg-no-repeat -z-10"
   style={{ backgroundImage: "url('/bg.jpg')" }}
 ></div>
 
@@ -387,12 +387,14 @@ useEffect(() => {
 
       {/* Logo & Judul */}
       <ScrollReveal>
-        <div className="text-center mb-4 mt-8">
-          <img src="/logo.png" alt="Logo" className="mx-auto w-16 h-16" />
-        </div>
-        <h1 className="text-2xl font-bold mb-6 text-center">
-          Open Recruitment TAAT IT CLUB
-        </h1>
+       <div className="flex flex-col items-center justify-center mt-8 mb-6">
+    <img src="/logo.png" alt="Logo" className="w-16 h-16 mb-2" />
+    <h1 className="text-2xl font-SEMIbold text-center leading-tight">Open Recruitment</h1>
+    <p className="text-lg font-bold text-yellow-300 text-center tracking-wide">
+      IT CLUB PRODUCTION
+    </p>
+  </div>
+        
       </ScrollReveal>
 
       {/* Definisi bidang */}
