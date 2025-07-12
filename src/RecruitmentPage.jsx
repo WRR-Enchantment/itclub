@@ -15,6 +15,18 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+const VISITOR_KEY = "taat-itclub-visitor-count";
+
+function getVisitorCount() {
+  let count = localStorage.getItem(VISITOR_KEY);
+  if (!count) {
+    count = 1;
+  } else {
+    count = parseInt(count) + 1;
+  }
+  localStorage.setItem(VISITOR_KEY, count);
+  return count;
+}
 
 const definitions = {
   "Desain grafis":
@@ -247,6 +259,20 @@ export default function RecruitmentPage() {
   const [loading, setLoading] = useState(true);
   const [visitorCount, setVisitorCount] = useState(0);
 
+  function getVisitorCount() {
+    const key = "taat-visitor-count";
+    const current = localStorage.getItem(key);
+    const newCount = current ? parseInt(current) + 1 : 1;
+    localStorage.setItem(key, newCount);
+    return newCount;
+  }
+
+  useEffect(() => {
+    const count = getVisitorCount();
+    setVisitorCount(count);
+  }, []);
+  
+
 useEffect(() => {
   fetch("https://api.countapi.xyz/hit/taatitclub/visits")
     .then((res) => res.json())
@@ -286,6 +312,7 @@ useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
+  
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-black text-yellow-400 font-bold text-2xl tracking-widest">
@@ -390,9 +417,10 @@ useEffect(() => {
         <div className="text-center mb-4 mt-8">
           <img src="/logo.png" alt="Logo" className="mx-auto w-16 h-16" />
         </div>
-        <h1 className="text-2xl font-bold mb-6 text-center">
-          Open Recruitment TAAT IT CLUB
-        </h1>
+        <h1 className="text-2xl font-bold mb-6 text-center leading-tight">
+  Open Recruitment<br />
+  <span className="text-yellow-300">IT CLUB PRODUCTION</span>
+</h1>
       </ScrollReveal>
 
       {/* Definisi bidang */}
