@@ -1,14 +1,9 @@
 // RecruitmentPage.jsx
 {/* Background Layer */}
 <div
-  className="fixed top-0 left-0 w-full min-h-[200vh] -z-10 bg-top bg-no-repeat bg-cover scale-105"
+  className="absolute top-0 left-0 w-full h-[200vh] -z-10 bg-top bg-no-repeat bg-cover"
   style={{ backgroundImage: "url('/bg.jpg')" }}
-/>
-    {/* Background Tetap */}
-    <div
-      className="fixed top-0 left-0 w-full min-h-[250vh] bg-cover bg-top scale-105 -z-10"
-      style={{ backgroundImage: "url('/bg.jpg')" }}
-    />
+></div>
 
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect, useMemo } from "react";
@@ -182,6 +177,13 @@ export default function RecruitmentPage() {
   const [totalScore, setTotalScore] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+const [vh, setVh] = useState(window.innerHeight);
+
+useEffect(() => {
+  const handleResize = () => setVh(window.innerHeight);
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
 
   const titles = [
     "Desainer Grafis",

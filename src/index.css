@@ -20,3 +20,8 @@ body {
   background-attachment: fixed; /* Bisa diganti 'scroll' jika ingin full HP support */
   background-repeat: no-repeat;
 }
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #000; /* fallback jika background error */
+}
