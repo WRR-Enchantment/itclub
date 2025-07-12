@@ -15,8 +15,8 @@
 }
 body {
   background-image: url('/bg.jpg');
-  background-size: cover;
-  background-position: center;
+ background-size: 100% auto; /* atau contain */
+  background-position: top center;
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
