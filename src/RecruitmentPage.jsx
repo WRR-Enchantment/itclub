@@ -215,11 +215,11 @@ export default function RecruitmentPage() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="relative min-h-screen text-white px-4 pt-16 pb-6 bg-fixed bg-cover bg-center"
-      style={{ backgroundImage: "url('/bg.jpg')" }}
+      className="relative min-h-screen text-white px-4 pt-16 pb-6"
+      
     >
       {/* MENU STRIP 3 KIRI ATAS */}
-      <div className="fixed top-2 left-2 z-50">
+      <div className="fixed top-15 left-2 z-50">
         <button
           onClick={() => setMenuOpen((open) => !open)}
           aria-label="Toggle menu"
