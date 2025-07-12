@@ -1,4 +1,10 @@
 // RecruitmentPage.jsx
+{/* Background Layer */}
+<div
+  className="fixed top-0 left-0 w-full h-full -z-10 bg-top bg-no-repeat bg-cover scale-105 sm:scale-100"
+  style={{ backgroundImage: "url('/bg.jpg')" }}
+/>
+
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect, useMemo } from "react";
 import {
