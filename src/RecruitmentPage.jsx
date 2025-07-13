@@ -303,10 +303,9 @@ useEffect(() => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="relative min-h-screen text-white px-4 pt-16 pb-6"
+      className="relative z-10 text-white px-4 pt-16 pb-6"
       style={{ minHeight: 'calc(var(--vh, 1vh) * 100)' }}
 
-      
     >
       {/* MENU STRIP 3 KIRI ATAS */}
       <div className="fixed top-15 left-2 z-50">
