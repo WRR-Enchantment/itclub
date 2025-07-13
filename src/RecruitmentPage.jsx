@@ -1,7 +1,5 @@
 // RecruitmentPage.jsx
-import Navbar from "./Navbar";
 import BackgroundLayerShape from "./BackgroundLayer";
-import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect, useMemo } from "react";
 import {
@@ -14,119 +12,210 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 
 const definitions = {
-  "Sopran": "Suara perempuan tertinggi. Biasanya menyanyikan melodi utama atau nada tinggi.",
-  "Alto": "Suara perempuan rendah. Mendukung harmoni dengan warna suara yang lembut.",
-  "Tenor": "Suara laki-laki tinggi. Sering mengisi bagian penting dalam harmoni.",
-  "Bass": "Suara laki-laki paling rendah. Memberikan dasar kuat pada paduan suara.",
+  "Desain grafis":
+    "Desain grafis adalah seni dan praktik merancang serta menyusun elemen visual untuk menyampaikan pesan melalui media seperti poster, brosur, dan media digital.",
+  Fotografi:
+    "Fotografi adalah seni menangkap cahaya dengan kamera untuk menciptakan gambar visual yang bisa bercerita atau menyampaikan emosi.",
+  Videografi:
+    "Videografi adalah proses menangkap gambar bergerak dengan kamera untuk membuat video dokumentasi, promosi, maupun karya seni.",
+  Editor:
+    "Editor bertanggung jawab dalam mengolah konten foto, video, atau tulisan menjadi lebih menarik dan sesuai kebutuhan dengan perangkat lunak editing.",
+  Coding:
+    "Coding adalah proses menulis instruksi dalam bahasa pemrograman untuk membuat perangkat lunak, aplikasi, atau sistem berbasis komputer.",
+  Presenter:
+    "Presenter bertugas menyampaikan informasi atau membawakan acara di depan kamera atau audiens, baik untuk keperluan dokumentasi, podcast, maupun siaran langsung.",
 };
 
 const testimonials = [
-  { quote: "Seru banget kalian wajib coba.", author: "@aameeliaps" },
-  { quote: "Padus bagi gw bagaikan keluarga ke 2", author: "@simoncalvinpanogari" },
-  { quote: "Eskul paling enjoy dan bikin rileks", author: "@rafli_rizki_" },
-  { quote: "Nyesel gw masuknya pas akhir² mau purna, soalnya seru 😭", author: "@farrelevanss." },
+  { quote: "Seru banget kalian wajib coba", author: "@559mlia" },
+  {
+    quote:
+      "Di IT Gw jadi dapet piagam gubernur, cocok banget buat kalian yang pengen belajar",
+    author: "@rafli_rizki_",
+  },
+  {
+    quote: "Gw Jadi bisa ikut serta dalam lomba FLS3N karena join IT",
+    author: "@dwiki.drmnsyh",
+  },
 ];
 
 const jobdesks = [
   {
-    title: "🎤 Obade Upacara Sekolah",
-    desc: "Menjadi tim vokal pembuka dalam upacara setiap hari Senin.",
+    title: "📸 Dokumentasi Acara",
+    desc: "Mengabadikan momen penting sekolah melalui foto dan video.",
   },
   {
-    title: "🏛️ Mengisi Acara Kecamatan",
-    desc: "Tampil saat peringatan hari besar nasional di tingkat kecamatan.",
+    title: "🎧 Produksi Podcast",
+    desc: "Membuat podcast bertema edukatif atau santai dengan tim produksi.",
   },
   {
-    title: "🎶 Latihan Rutin & Lomba",
-    desc: "Latihan bersama dan mempersiapkan event lomba atau penampilan khusus.",
+    title: "📱 Konten Media Sosial",
+    desc: "Mendesain dan mengelola konten visual di Instagram, TikTok, dan lainnya.",
+  },
+  {
+    title: "🎥 Wawancara di Acara",
+    desc: "Melakukan liputan langsung dan mewawancarai peserta acara.",
+  },
+  {
+    title: "🏆 Persiapan & Ikut Lomba",
+    desc: "Menjadi bagian dari tim lomba seperti FLS2N, coding, video kreatif, dan lainnya.",
+  },
+];
+const faqs = [
+  { question: "Kapan jadwal ekskulnya?", answer: "Setiap hari Jumat." },
+  {
+    question: "Apakah harus sudah ahli untuk bisa bergabung?",
+    answer: "Tidak harus, karena di sini kita sama-sama belajar.",
+  },
+  {
+    question: "Apa bisa memilih lebih dari satu bidang?",
+    answer: "Bisa! Kamu bebas eksplorasi, tapi disarankan fokus.",
+  },
+  {
+    question: "Bagaimana jika saya sudah ikut ekstrakurikuler lain?",
+    answer:
+      "Tidak masalah! Banyak anggota kami juga aktif di ekskul lain, asalkan bisa mengatur waktu.",
+  },
+  {
+    question: "Apakah dapat sertifikat?",
+    answer:
+      "Ya, ada sertifikat keikutsertaan dan penghargaan bila aktif atau ikut lomba.",
   },
 ];
 
-const faqs = [
-  {
-    question: "Apakah harus punya suara bagus dulu untuk gabung?",
-    answer: "Tidak. Yang penting mau belajar dan rajin latihan, kemampuan akan berkembang.",
-  },
-  {
-    question: "Kapan jadwal latihannya?",
-    answer: "Latihan rutin setiap hari Selasa dan Kamis setelah pulang sekolah. Jadwal bisa bertambah menjelang acara.",
-  },
-  {
-    question: "Apa saja yang dinyanyikan?",
-    answer: "Lagu kebangsaan, lagu nasional, lagu daerah, dan lagu pop yang sesuai untuk acara.",
-  },
-  {
-    question: "Apakah bisa ikut walau belum pernah ikut paduan suara?",
-    answer: "Bisa banget! Kami akan bantu dari awal, termasuk latihan dasar vokal.",
-  },
-  {
-    question: "Apakah paduan suara ini sering tampil?",
-    answer: "Iya, kami tampil di upacara sekolah dan acara kecamatan saat hari besar nasional.",
-  },
-];
 const allGamePaths = [
   [
     {
-      question: "Kamu baru daftar Sandya Gantari. Apa alasan kamu ikut paduan suara?",
+      question: "Kamu baru masuk IT CLUB, alasan kamu gabung karena...",
       options: [
-        { text: "Karena suka nyanyi dan pengen tampil di acara sekolah", points: 2, next: 1 },
-        { text: "Karena diajak teman dan iseng coba-coba dulu", points: 1, next: 1 },
+        { text: "Karena ada kak Dwiki yang keren banget pas presentasi.", points: 2, next: 1 },
+        { text: "Karena penasaran sama yang namanya 'tim produksi'.", points: 1, next: 1 },
       ],
     },
     {
-      question: "Hari pertama latihan, kamu belum kenal siapa-siapa. Kamu akan...",
+      question: "Kamu datang ke pertemuan pertama, tapi belum kenal siapa-siapa. Kamu...",
       options: [
-        { text: "Mencoba menyapa dan kenalan dengan anggota lain", points: 2, next: 2 },
-        { text: "Diam saja dan ikut latihan tanpa banyak bicara", points: 1, next: 2 },
+        { text: "Coba duduk dekat orang dan menyapa duluan", points: 2, next: 2 },
+        { text: "Main HP sambil menunggu instruksi", points: 0, next: 2 },
       ],
     },
     {
-      question: "Pelatih minta semua hafal lagu Indonesia Raya untuk upacara.",
+      question: "Kamu ditugaskan jadi fotografer pas upacara bendera. Tapi cuaca mendung.",
       options: [
-        { text: "Langsung latihan sendiri di rumah", points: 2, next: 3 },
-        { text: "Menunggu latihan berikutnya saja", points: 0, next: 3 },
+        { text: "Tetap ambil gambar semaksimal mungkin", points: 2, next: 3 },
+        { text: "Bilang ke senior kalau gak yakin", points: 1, next: 3 },
       ],
     },
     {
-      question: "Suaramu fals saat latihan dan semua dengar.",
+      question: "Ada deadline edit foto malam ini, tapi kamu ngantuk berat.",
       options: [
-        { text: "Minta maaf dan minta bimbingan", points: 2, next: 4 },
-        { text: "Diam dan pura-pura tidak terjadi apa-apa", points: 0, next: 4 },
+        { text: "Kerjakan semampunya dan lapor kalau belum selesai", points: 1, next: 4 },
+        { text: "Paksa begadang sampai tuntas", points: 2, next: 4 },
       ],
     },
     {
-      question: "Pelatih minta kamu coba nyanyi solo bagian awal lagu.",
+      question: "Hasil editing kamu dikritik, katanya terlalu gelap.",
       options: [
-        { text: "Coba saja, walau deg-degan", points: 2, next: 5 },
-        { text: "Menolak karena belum siap", points: 0, next: 5 },
+        { text: "Minta masukan detail dan revisi", points: 2, next: 5 },
+        { text: "Jawab seadanya, lalu diam", points: 0, next: 5 },
       ],
     },
     {
-      question: "Hari H upacara, salah satu anggota tidak hadir.",
+      question: "Saat mau upload, internet di rumah error.",
       options: [
-        { text: "Kamu siap mengisi posisi suara yang kosong", points: 2, next: 6 },
-        { text: "Biarkan pelatih saja yang atur", points: 1, next: 6 },
+        { text: "Cari WiFi tetangga atau sekolah", points: 2, next: 6 },
+        { text: "Menyerah dan kirim besok aja", points: 0, next: 6 },
       ],
     },
     {
-      question: "Kamu diminta tampil di kecamatan, tapi bentrok dengan kegiatan lain.",
+      question: "Tugas berikutnya: dokumentasi acara OSIS yang rame banget!",
       options: [
-        { text: "Diskusi dan cari solusi biar tetap bisa tampil", points: 2, next: "result" },
-        { text: "Pilih kegiatan lain karena tampilnya takut", points: 0, next: "result" },
+        { text: "Ambil gambar dari berbagai sudut", points: 2, next: 7 },
+        { text: "Cuma ambil dari jauh biar aman", points: 1, next: 7 },
+      ],
+    },
+    {
+      question: "Laptop kamu hang saat render video akhir.",
+      options: [
+        { text: "Restart dan mulai render ulang dengan sabar", points: 2, next: "result" },
+        { text: "Minta tolong teman backup file", points: 1, next: "result" },
+      ],
+    },
+  ],
+  [
+    {
+      question: "Kamu ditawari jadi host podcast walau belum pernah coba.",
+      options: [
+        { text: "Oke, tantangan baru!", points: 2, next: 1 },
+        { text: "Nolak halus, minta jadi teknisi saja", points: 0, next: 1 },
+      ],
+    },
+    {
+      question: "Pas rekaman, kamu grogi dan ngomongnya belepotan.",
+      options: [
+        { text: "Ulang rekaman sampai lebih tenang", points: 2, next: 2 },
+        { text: "Lanjut aja, biar belajar dari kesalahan", points: 1, next: 2 },
+      ],
+    },
+    {
+      question: "Rekamanmu di-posting dan banyak view! Tapi ada kritik logat daerahmu.",
+      options: [
+        { text: "Terima dan belajar lebih baik lagi", points: 2, next: "result" },
+        { text: "Abaikan, yang penting pede", points: 1, next: "result" },
+      ],
+    },
+  ],
+  [
+    {
+      question: "Kamu ditunjuk sebagai editor video utama untuk promosi ekskul.",
+      options: [
+        { text: "Siap, mulai brainstorming ide dulu", points: 2, next: 1 },
+        { text: "Minta referensi dan contoh video lama", points: 1, next: 1 },
+      ],
+    },
+    {
+      question: "Footage yang kamu terima buram dan shaky.",
+      options: [
+        { text: "Pakai footage yang ada sambil kreatif menyelamatkan", points: 2, next: 2 },
+        { text: "Komplain dan minta ulang semua", points: 0, next: 2 },
+      ],
+    },
+    {
+      question: "Kamu diundang ikut kompetisi video pendek.",
+      options: [
+        { text: "Langsung ikut dan buat script bareng tim", points: 2, next: 3 },
+        { text: "Minta waktu berpikir dulu", points: 1, next: 3 },
+      ],
+    },
+    {
+      question: "Waktu tinggal 1 hari, kamu belum tidur demi edit video final.",
+      options: [
+        { text: "Lanjut terus! Ini momen penting", points: 2, next: 4 },
+        { text: "Istirahat sebentar lalu lanjut kerja", points: 1, next: 4 },
+      ],
+    },
+    {
+      question: "Saat upload, file corrupt!",
+      options: [
+        { text: "Cari backup & render ulang cepat", points: 2, next: "result" },
+        { text: "Putus asa dan kirim saja seadanya", points: 0, next: "result" },
       ],
     },
   ],
 ];
 
 function getResult(score) {
-  if (score >= 10) {
-    return "🎉 Kamu cocok banget jadi bagian Sandya Gantari! Semangat dan komitmenmu luar biasa!";
-  } else if (score >= 6) {
-    return "👍 Kamu cukup siap! Dengan latihan dan keberanian, kamu bisa berkembang pesat.";
+  if (score >= 6) {
+    return "🔥 Kamu luar biasa! Tantangan malah bikin kamu bersinar. Tim butuh orang seperti kamu!";
+  } else if (score >= 3) {
+    return "💪 Kamu cukup solid! Kadang ragu, tapi kamu tetap melangkah. Terus berkembang, ya!";
+  } else if (score >= 0) {
+    return "🤔 Perlu latihan lagi. Tapi kamu punya niat, tinggal dibimbing aja.";
   } else {
-    return "💡 Masih perlu banyak latihan dan keberanian. Tapi semangatmu bisa diasah!";
+    return "⚠️ Hmm... sepertinya kamu belum siap bergabung. Yuk, coba lagi dan lebih berani ambil keputusan!";
   }
 }
+
 
 function ScrollReveal({ children, delay = 0 }) {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -141,6 +230,7 @@ function ScrollReveal({ children, delay = 0 }) {
     </motion.div>
   );
 }
+
 export default function RecruitmentPage() {
   const [selected, setSelected] = useState(null);
   const [typedIndex, setTypedIndex] = useState(0);
@@ -152,23 +242,31 @@ export default function RecruitmentPage() {
   const [loading, setLoading] = useState(true);
   const [visitorCount, setVisitorCount] = useState(0);
 
-  useEffect(() => {
-    fetch("https://api.countapi.xyz/hit/sandya-gantari/visits")
-      .then((res) => res.json())
-      .then((data) => setVisitorCount(data.value));
-  }, []);
+useEffect(() => {
+  fetch("https://api.countapi.xyz/hit/taatitclub/visits")
+    .then((res) => res.json())
+    .then((data) => setVisitorCount(data.value));
+}, []);
 
-  useEffect(() => {
-    const setVh = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    };
-    setVh();
-    window.addEventListener("resize", setVh);
-    return () => window.removeEventListener("resize", setVh);
-  }, []);
+useEffect(() => {
+  const setVh = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+  setVh();
+  window.addEventListener('resize', setVh);
+  return () => window.removeEventListener('resize', setVh);
+}, []);
 
-  const titles = ["Sopran", "Alto", "Tenor", "Bass"];
+
+  const titles = [
+    "Desainer Grafis",
+    "Fotografer",
+    "Videografer",
+    "Editor",
+    "Programmer",
+    "Presenter",
+  ];
 
   const gamePaths = useMemo(() => {
     const randomIndex = Math.floor(Math.random() * allGamePaths.length);
@@ -186,7 +284,6 @@ export default function RecruitmentPage() {
     const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
-
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-black text-yellow-400 font-bold text-2xl tracking-widest">
@@ -195,21 +292,23 @@ export default function RecruitmentPage() {
           animate={{ opacity: [0, 1, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          SANDYA GANTARI
+          TAAT IT CLUB
         </motion.div>
       </div>
     );
   }
 
   return (
+    
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="relative z-10 text-white px-4 pt-16 pb-6"
-      style={{ minHeight: "calc(var(--vh, 1vh) * 100)" }}
+      style={{ minHeight: 'calc(var(--vh, 1vh) * 100)' }}
+
     >
       {/* MENU STRIP 3 KIRI ATAS */}
-      <div className="fixed top-13 left-2 z-50">
+      <div className="fixed top-15 left-2 z-50">
         <button
           onClick={() => setMenuOpen((open) => !open)}
           aria-label="Toggle menu"
@@ -246,54 +345,60 @@ export default function RecruitmentPage() {
             >
               <ul>
                 <li>
-                  <Link
-                    to="/"
+                  <button
                     onClick={() => setMenuOpen(false)}
                     className="block w-full text-left px-4 py-2 hover:bg-yellow-300 transition"
                   >
-                    Home
-                  </Link>
+                    Promotion Page
+                  </button>
                 </li>
                 <li>
-                  <Link
-                    to="/rekrutmen"
+                  <a
+                    href="https://sites.google.com/u/2/d/1Ge2ZvwszxRG4PLG9eG9Dil03pLO1uUGW/p/1dphi9Yn4LA7vqa36_QoHyzb7k7jIzAyx/preview?authuser=2"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() => setMenuOpen(false)}
-                    className="block w-full text-left px-4 py-2 hover:bg-yellow-300 transition"
+                    className="block px-4 py-2 hover:bg-yellow-300 transition"
                   >
-                    Pendaftaran
-                  </Link>
+                    Situs
+                  </a>
                 </li>
               </ul>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
+<BackgroundLayerShape />
 
-      <BackgroundLayerShape />
+      {/* MARQUEE TEKS DI ATAS TENGAH TANPA JEDA */}
+<div className="fixed top-2 left-1/2 transform -translate-x-1/2 z-40 w-[90%] max-w-xl overflow-hidden whitespace-nowrap rounded-md bg-white/100 text-black font-semibold text-sm select-none shadow-md px-4 py-1">
+  <motion.div
+    className="flex gap-12 animate-marquee"
+    animate={{ x: ["0%", "-100%"] }}
+    transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+  >
+    <span>
+      Belajar di temenin aa Dwiki yang baik hati dan tidak sombon minus slow respon saja :) 
+    </span>
+    <span>
+      💡 Satu klub, banyak karya. Gabung TAAT IT CLUB dan ekspresikan kreativitasmu bareng teman-teman seru!
+    </span>
+  </motion.div>
+</div>
 
-      {/* MARQUEE */}
-      <div className="fixed top-2 left-1/2 transform -translate-x-1/2 z-40 w-[90%] max-w-xl overflow-hidden whitespace-nowrap rounded-md bg-white/100 text-black font-semibold text-sm select-none shadow-md px-4 py-1">
-        <motion.div
-          className="flex gap-12 animate-marquee"
-          animate={{ x: ["0%", "-100%"] }}
-          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-        >
-          <span>🎶 Satu suara, satu irama. Gabung Sandya Gantari sekarang juga!</span>
-          <span>✨ Latihan setiap Selasa & Kamis. Siap tampil di acara-acara penting!</span>
-        </motion.div>
-      </div>
-      {/* JUDUL & LOGO */}
+      {/* Logo & Judul */}
       <ScrollReveal>
-        <div className="flex flex-col items-center justify-center mt-8 mb-6">
-          <img src="/logo.png" alt="Logo" className="w-16 h-16 mb-2" />
-          <h1 className="text-2xl font-semibold text-center leading-tight">Open Recruitment</h1>
-          <p className="text-lg font-bold text-yellow-300 text-center tracking-wide">
-            PADUAN SUARA SMAN 1 TAJURHALANG
-          </p>
-        </div>
+       <div className="flex flex-col items-center justify-center mt-8 mb-6">
+    <img src="/logo.png" alt="Logo" className="w-16 h-16 mb-2" />
+    <h1 className="text-2xl font-SEMIbold text-center leading-tight">Open Recruitment</h1>
+    <p className="text-lg font-bold text-yellow-300 text-center tracking-wide">
+      IT CLUB PRODUCTION
+    </p>
+  </div>
+        
       </ScrollReveal>
 
-      {/* DEFINISI 4 SUARA */}
+      {/* Definisi bidang */}
       <ScrollReveal>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 max-w-4xl mx-auto">
           {Object.keys(definitions).map((role) => (
@@ -323,10 +428,10 @@ export default function RecruitmentPage() {
         </div>
       </ScrollReveal>
 
-      {/* JOBDESK */}
+      {/* Jobdesk Populer */}
       <ScrollReveal>
         <div className="max-w-3xl mx-auto">
-          <h3 className="text-lg font-semibold mb-4 text-center">💼 Kegiatan Utama</h3>
+          <h3 className="text-lg font-semibold mb-4 text-center">💼 Jobdesk Populer</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {jobdesks.map((item, index) => (
               <div
@@ -340,11 +445,12 @@ export default function RecruitmentPage() {
           </div>
         </div>
       </ScrollReveal>
-      {/* TOMBOL DAFTAR */}
+
+      {/* Tombol Daftar */}
       <ScrollReveal>
         <div className="mt-10 mb-6 flex justify-center">
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSc2rSNsoAd2VauTdZNrYg-NVB9Vt6jxIizntmbRfBi1cWFjTg/viewform"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfZ4g5IVkPX6ChejtUwqT5XG_u7osyqlo54F4hyU0gEzA5mTA/viewform"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-2 text-base bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full shadow-md backdrop-blur-xl transition-all flex items-center gap-2"
@@ -353,40 +459,32 @@ export default function RecruitmentPage() {
           </a>
         </div>
       </ScrollReveal>
+      {/* Kontak */}
+      <ScrollReveal>
+        <div className="flex flex-wrap justify-center gap-3">
+          <a
+            href="http://wa.me/qr/6IILUSBVL5SUM1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-1.5 text-xs bg-white/20 hover:bg-white/30 text-white font-medium rounded-lg shadow-md backdrop-blur-xl transition-all flex items-center gap-2"
+          >
+            <FaWhatsapp /> Contact
+          </a>
+          <a
+            href="https://www.instagram.com/taat_itclub"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-1.5 text-xs bg-pink-600 hover:bg-pink-500 text-white font-medium rounded-lg shadow-md backdrop-blur-xl transition-all flex items-center gap-2"
+          >
+            <FaInstagram /> Instagram
+          </a>
+        </div>
+      </ScrollReveal>
 
-      {/* KONTAK */}
-<ScrollReveal>
-  <div className="mt-12 text-center">
-    <h2 className="text-lg font-bold text-yellow-300 mb-3">📞 Kontak Kami</h2>
-
-    {/* WhatsApp - tanpa link */}
-    <div className="flex flex-col items-center gap-2 text-sm text-white font-medium mb-4">
-      <div className="flex items-center gap-2 px-4 py-1.5 bg-green-600 rounded-lg shadow-md backdrop-blur-xl">
-        <FaWhatsapp /> 0812-9686-2691 (Fires)
-      </div>
-      <div className="flex items-center gap-2 px-4 py-1.5 bg-green-600 rounded-lg shadow-md backdrop-blur-xl">
-        <FaWhatsapp /> 0838-9884-5627 (Rere)
-      </div>
-    </div>
-
-    {/* Instagram - tetap link */}
-    <div className="flex justify-center">
-      <a
-        href="https://www.instagram.com/padussman1ta?igsh=MXFwODJkMmd2dHYyMw=="
-        target="_blank"
-        rel="noopener noreferrer"
-        className="px-4 py-1.5 text-xs bg-pink-600 hover:bg-pink-500 text-white font-medium rounded-lg shadow-md backdrop-blur-xl transition-all flex items-center gap-2"
-      >
-        <FaInstagram /> Instagram
-      </a>
-    </div>
-  </div>
-</ScrollReveal>
-
-      {/* TESTIMONI */}
+      {/* Testimoni Alumni */}
       <ScrollReveal>
         <div className="mt-14 max-w-xl mx-auto">
-          <h3 className="text-lg font-semibold mb-3 text-center">💬 Testimoni</h3>
+          <h3 className="text-lg font-semibold mb-3 text-center">💬 Testimoni Alumni</h3>
           <div className="space-y-4">
             {testimonials.map((t, i) => (
               <div
@@ -402,11 +500,12 @@ export default function RecruitmentPage() {
           </div>
         </div>
       </ScrollReveal>
-      {/* MINI SIMULASI */}
+
+      {/* Mini Simulasi */}
       <ScrollReveal>
         <div className="mt-14 max-w-xl mx-auto text-sm">
           <h3 className="text-lg font-semibold text-center mb-4">
-            🎮 Mini Simulasi: Masuk Paduan Suara
+            🎮 Mini Simulasi: Masuk Tim Produksi
           </h3>
 
           {gameStep === null ? (
@@ -463,7 +562,8 @@ export default function RecruitmentPage() {
           )}
         </div>
       </ScrollReveal>
-      {/* FAQ BUTTON & PANEL */}
+
+      {/* FAQ Button & Panel */}
       <div className="fixed bottom-5 right-5 z-50">
         <button
           onClick={() => setShowFAQ(!showFAQ)}
@@ -491,16 +591,6 @@ export default function RecruitmentPage() {
           )}
         </AnimatePresence>
       </div>
-      <motion.footer
-  className="mt-24 py-6 text-center text-sm text-white/60 border-t border-white/10"
-  initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  transition={{ duration: 1 }}
-  viewport={{ once: true }}
->
-  <p>© {new Date().getFullYear()} Sandya Gantari - Paduan Suara SMAN 1 Tajurhalang</p>
-  <p className="mt-1">Satu Suara, Satu Irama.</p>
-</motion.footer>
     </motion.div>
   );
 }

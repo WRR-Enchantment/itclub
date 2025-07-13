@@ -20,12 +20,3 @@ html, body {
   height: 100%;
   overflow-x: hidden;
 }
-.perspective {
-  perspective: 1000px;
-}
-.backface-hidden {
-  backface-visibility: hidden;
-}
-.rotate-y-180 {
-  transform: rotateY(180deg);
-}
