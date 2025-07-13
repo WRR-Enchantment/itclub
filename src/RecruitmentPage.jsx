@@ -1,5 +1,5 @@
 // RecruitmentPage.jsx
-import BackgroundLayer from "./BackgroundLayer";
+import BackgroundLayerShape from "./BackgroundLayer";
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect, useMemo } from "react";
 import {
@@ -364,7 +364,7 @@ useEffect(() => {
           )}
         </AnimatePresence>
       </div>
-<BackgroundLayer />
+<BackgroundLayerShape />
 
       {/* MARQUEE TEKS DI ATAS TENGAH TANPA JEDA */}
 <div className="fixed top-2 left-1/2 transform -translate-x-1/2 z-40 w-[90%] max-w-xl overflow-hidden whitespace-nowrap rounded-md bg-white/100 text-black font-semibold text-sm select-none shadow-md px-4 py-1">
