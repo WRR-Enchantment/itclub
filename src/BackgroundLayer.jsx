@@ -1,27 +1,16 @@
-import { useEffect, useState } from "react";
-
+// BackgroundLayer.jsx
 export default function BackgroundLayerShape() {
-  const [height, setHeight] = useState(window.innerHeight);
-
-  useEffect(() => {
-    const updateHeight = () => {
-      setHeight(window.innerHeight);
-    };
-
-    // Set tinggi awal dan update saat resize
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-
-    return () => window.removeEventListener("resize", updateHeight);
-  }, []);
-
   return (
     <div
-      className="fixed top-0 left-0 w-full z-0 bg-cover bg-center"
+      className="fixed bottom-0 left-1/2 transform -translate-x-1/2 z-0"
       style={{
-        height: `${height}px`,
-        backgroundImage: "url('/bg.jpg')",
+        width: "980px", // ukuran aslinya
+        height: "1531px",
+        backgroundImage: `url('/bg.jpg')`,
         backgroundRepeat: "no-repeat",
+        backgroundSize: "auto", // tetap ukurannya
+        backgroundPosition: "bottom center",
+        pointerEvents: "none",
       }}
     />
   );
