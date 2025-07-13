@@ -1,6 +1,7 @@
 // Home.jsx
 import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
+import BackgroundLayerShape from "./BackgroundLayer";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -239,16 +240,12 @@ export default function Home() {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="relative z-10 px-4 pt-16 pb-6 text-white"
-      style={{
-        minHeight: "calc(var(--vh, 1vh) * 100)",
-        backgroundImage: "url('/bg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  className="relative z-10 px-4 pt-16 pb-6 text-white"
+  style={{
+    minHeight: "calc(var(--vh, 1vh) * 100)",
+  }}
     >
       {/* MENU STRIP 3 KIRI ATAS */}
       <div className="fixed top-13 left-2 z-50">
@@ -310,6 +307,8 @@ export default function Home() {
           )}
         </AnimatePresence>
       </div>
+
+<BackgroundLayerShape />
 
       {/* MARQUEE */}
       <div className="fixed top-2 left-1/2 transform -translate-x-1/2 z-40 w-[90%] max-w-xl overflow-hidden whitespace-nowrap rounded-md bg-white/100 text-black font-semibold text-sm select-none shadow-md px-4 py-1">
