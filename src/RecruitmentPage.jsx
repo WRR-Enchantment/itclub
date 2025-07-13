@@ -248,13 +248,16 @@ useEffect(() => {
     .then((data) => setVisitorCount(data.value));
 }, []);
 
-const [vh, setVh] = useState(window.innerHeight);
-
 useEffect(() => {
-  const handleResize = () => setVh(window.innerHeight);
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
+  const setVh = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+  setVh();
+  window.addEventListener('resize', setVh);
+  return () => window.removeEventListener('resize', setVh);
 }, []);
+
 
   const titles = [
     "Desainer Grafis",
@@ -301,6 +304,8 @@ useEffect(() => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="relative min-h-screen text-white px-4 pt-16 pb-6"
+      style={{ minHeight: 'calc(var(--vh, 1vh) * 100)' }}
+
       
     >
       {/* MENU STRIP 3 KIRI ATAS */}
