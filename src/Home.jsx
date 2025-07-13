@@ -407,8 +407,8 @@ export default function Home() {
                   />
                   <p className="text-sm text-white/80">
                     {index === 0 && "Latihan rutin setiap minggu membangun kekompakan dan kualitas suara seluruh anggota Sandya Gantari."}
-                    {index === 1 && "Penampilan di upacara bendera membuat suasana lebih khidmat dan semangat nasionalisme."}
-                    {index === 2 && "Lomba tingkat kecamatan jadi ajang menunjukkan prestasi dan kerja keras kami."}
+                    {index === 1 && "Penampilan paduan suara di berbagai event sekolah."}
+                    {index === 2 && "ikut serta sebagai obade di upacara hari besar tingkat kecamatan."}
                   </p>
                 </motion.div>
               </div>
