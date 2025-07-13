@@ -13,10 +13,11 @@ export default function BackgroundLayer() {
     <div
       className="fixed top-0 left-0 w-full bg-cover bg-center bg-no-repeat -z-10"
       style={{
-        backgroundImage: "url('/bg.jpg')",
-        height: `${vh}px`,
-        backgroundColor: "#000", // fallback
-        backgroundAttachment: "fixed", // supaya diam saat scroll
+         backgroundImage: "url('/bg.jpg')",
+    height: `${vh}px`,
+    backgroundSize: "100%",        // atur ukuran skala background
+    backgroundPosition: "center bottom",  // atur posisi background (horizontal tengah, vertikal 10% dari atas)
+    backgroundColor: "#000",
       }}
     ></div>
   );
