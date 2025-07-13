@@ -2,16 +2,16 @@
 export default function BackgroundLayerShape() {
   return (
     <div
-      className="fixed bottom-0 left-1/2 transform -translate-x-1/2 z-0"
-      style={{
-        width: "980px", // ukuran aslinya
-        height: "1531px",
-        backgroundImage: `url('/bg.jpg')`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "auto", // tetap ukurannya
-        backgroundPosition: "bottom center",
-        pointerEvents: "none",
-      }}
+      className="fixed bottom-0 left-0 w-full h-full z-0"
+     style={{
+     backgroundImage: "url('/bg.jpg')",
+     backgroundSize: "contain",
+     backgroundRepeat: "no-repeat",
+     backgroundPosition: "bottom center",
+     pointerEvents: "none",
+     transform: "scale(4.3)", // 🔍 perbesar 120%
+     transformOrigin: "bottom center", // penting: agar scaling tetap dari bawah
+}}
     />
   );
 }
