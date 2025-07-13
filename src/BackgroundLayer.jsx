@@ -11,14 +11,18 @@ export default function BackgroundLayer() {
 
   return (
     <div
-      className="fixed top-0 left-0 w-full h-full -z-10 bg-no-repeat bg-center bg-cover"
-      style={{
-        height: `${vh}px`,
-        backgroundImage: "url('/bg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center top",
-        backgroundColor: "#000",
-      }}
-    ></div>
+      className="fixed top-0 left-0 w-full -z-10 overflow-hidden"
+      style={{ height: `${vh}px` }}
+    >
+      <img
+        src="/bg.jpg"
+        alt="background"
+        className="w-full h-full object-cover object-top"
+        style={{
+          maxWidth: "100%",
+          maxHeight: "100%",
+        }}
+      />
+    </div>
   );
 }

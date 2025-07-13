@@ -1,11 +1,11 @@
 import RecruitmentPage from "./RecruitmentPage";
-import BackgroundLayer from "./BackgroundLayer"; // import di sini
+import BackgroundLayer from "./BackgroundLayer";
 
 function App() {
   return (
     <>
-      <BackgroundLayer /> {/* tampilkan background di belakang */}
-      <RecruitmentPage /> {/* konten utama */}
+      <BackgroundLayer />
+      <RecruitmentPage />
     </>
   );
 }
